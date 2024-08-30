@@ -22,19 +22,36 @@ readInput.on('line', (line) => {
       case Command.PLACE:
         const robotLocation = text[1];
         robot.place(robotLocation);
+        robot.trackCommand(Command.PLACE);
         break;
       case Command.LEFT:
         robot.left();
+        robot.trackCommand(Command.LEFT);
         break;
       case Command.RIGHT:
         robot.right();
+        robot.trackCommand(Command.RIGHT);
         break;
       case Command.MOVE:
         robot.move();
+        robot.trackCommand(Command.MOVE);
         break;
       case Command.REPORT:
         robot.report();
+        robot.trackCommand(Command.REPORT);
         break;
+      case Command.TRACK:
+        const count = parseInt(text[1]);
+        if(count>0){
+         const commands =  robot.commands.slice(0,count);
+         commands.forEach(command=>{
+          console.log("(", command.coordiante.x, " ", command.coordiante.y, " ", command.direction, ") ", command.command);
+         })
+        }
+        else{
+          console.log("Provide a valid number for tracking");
+        }
+      break;
       default:
         console.log("Sorry, I couldn't get the command please enter again!");
         break;

@@ -1,3 +1,4 @@
+import { Command } from "../enums/Commands";
 import {Direction, DirectionMap} from "../utility/DirectionMap"
 
 export type Coordinate = {
@@ -9,11 +10,13 @@ export class Robot{
     coordinate: Coordinate;
     direction: Direction;
     coordinateLimit: Coordinate
+    commands: {coordiante: Coordinate, direction: Direction, command: Command}[]
 
-    constructor(coordinateLimit: Coordinate, coordinate={x:0,y:0}, direction = Direction.NORTH){
+    constructor(coordinateLimit: Coordinate, coordinate={x:0,y:0}, direction = Direction.NORTH, commands =[]){
        this.coordinate = coordinate;
        this.direction = direction;
        this.coordinateLimit = coordinateLimit;
+       this.commands = commands;
     }
      move = () => {
         const location = { x:DirectionMap[this.direction].MOVE.x  + this.coordinate.x, 
@@ -45,6 +48,9 @@ export class Robot{
     }
     validateLocation = (location:Coordinate) =>{
         return location.x<= this.coordinateLimit.x && location.y <= this.coordinateLimit.y
+    }
+    trackCommand = (command: string) =>{
+        this.commands.push({coordiante:this.coordinate, direction: this.direction, command: Command[command as keyof typeof Command]})
     }
 }
 

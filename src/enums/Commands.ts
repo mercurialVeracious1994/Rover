@@ -3,5 +3,6 @@ export enum Command  {
     LEFT="LEFT",
     RIGHT="RIGHT",
     MOVE="MOVE",
-    REPORT="REPORT"
+    REPORT="REPORT",
+    TRACK="TRACK"
 }
