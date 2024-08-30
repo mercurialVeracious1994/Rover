@@ -1,0 +1,17 @@
+{
+  "name": "roverrobot",
+  "version": "1.0.0",
+  "description": "robot to cover distance on mars",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node src/index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.4.1",
+    "node": "^22.6.0",
+    "typescript": "^5.5.4"
+  },
+  "author": "",
+  "license": "ISC"
+}
