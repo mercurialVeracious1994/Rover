@@ -54,7 +54,7 @@ export class Robot{
         this.trackCommand(Command.PLACE, prevLocation);
     }
     validateLocation = (location:Coordinate) =>{
-        return location.x<= this.coordinateLimit.x && location.y <= this.coordinateLimit.y
+        return location.x>=0 && location.y >=0 && location.x<= this.coordinateLimit.x && location.y <= this.coordinateLimit.y
     }
     trackCommand = (command: string,prevLocation: Location) =>{
         this.commands.push({
@@ -64,14 +64,14 @@ export class Robot{
         })
     }
     printLastNCommands = (count: number) =>{
-        const commandsList =  this.commands.slice(1,count); // need to print the PLACE command
+        const commandsList =  this.commands.slice(1,count+1); // need to print the PLACE command
          commandsList.forEach(({prevLocation,command})=>{
           console.log("(",prevLocation.coordinate.x, ",", 
             prevLocation.coordinate.y, ",",
             prevLocation.direction, ") ",
             command);
          });
-        console.log("( ", this.latestLocation.coordinate.x,",", 
+        console.log("(", this.latestLocation.coordinate.x,",", 
         this.latestLocation.coordinate.y,",", 
         this.latestLocation.direction,")" );
     }
