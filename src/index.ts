@@ -38,12 +38,21 @@ readInput.on('line', (line) => {
       case Command.TRACK:
         const count = parseInt(text[1]);
         if(count>0){
-          robot.printLastNCommands(count);
+          robot.printFirstNCommands(count);
         }
         else{
           console.log("Provide a valid number for tracking");
         }
-      break;
+       break;
+      case Command.BACKTRACK:
+        const backTrackTOCommand = parseInt(text[1]);
+        if(backTrackTOCommand>0){
+          robot.backTrackToLastNCommand(backTrackTOCommand);
+        }
+        else{
+          console.log("Provide a valid number for tracking");
+        }
+        break;
       default:
         console.log("Sorry, I couldn't get the command please enter again!");
         break;
